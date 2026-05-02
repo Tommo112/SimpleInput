@@ -1,0 +1,11 @@
+{
+  "globalEnabled": false,
+  "clickKey": 1,
+  "triggerKey": 1,
+  "globalToggleKey": 119,
+  "recordKey": 120,
+  "playbackKey": 121,
+  "cps": 10,
+  "mode": "toggle",
+  "recording": []
+}
