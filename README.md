@@ -23,21 +23,3 @@ SimpleInput 是一个 Windows 简易连点器，支持连点、按键录制和�
 cmake -S . -B build -G Ninja
 cmake --build build
 ```
-
-运行测试：
-
-```powershell
-ctest --test-dir build --output-on-failure
-```
-
-生成发布压缩包：
-
-```powershell
-cmake --build build --target package
-```
-
-生成文件：
-
-```text
-build/SimpleInput-0.1.0-windows.zip
-```
