@@ -1,6 +1,6 @@
 # SimpleInput
 
-SimpleInput 是一个 Windows 简易连点器，支持连点、按键录制和回放。程序为原生 Win32 界面，不需要 Qt 运行库。
+SimpleInput 是一个 Windows 简易连点器，支持连点、按键录制和回放。程序为原生 Win32 界面.
 
 ## 使用方式
 
