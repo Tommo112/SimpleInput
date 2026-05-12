@@ -148,7 +148,7 @@ bool MainWindow::create() {
 
     hwnd_ = CreateWindowExW(0, windowClass.lpszClassName, L"SimpleInput",
                             WS_OVERLAPPED | WS_CAPTION | WS_SYSMENU | WS_MINIMIZEBOX, CW_USEDEFAULT, CW_USEDEFAULT,
-                            520, 455, nullptr, nullptr, instance_, this);
+                            560, 495, nullptr, nullptr, instance_, this);
     if (!hwnd_) {
         return false;
     }
@@ -221,33 +221,35 @@ HWND MainWindow::createControl(const wchar_t* className, const wchar_t* text, DW
 void MainWindow::buildUi() {
     font_ = reinterpret_cast<HFONT>(GetStockObject(DEFAULT_GUI_FONT));
 
-    createControl(L"BUTTON", L"连点", BS_GROUPBOX, 12, 10, 480, 212);
-    globalEnabledCheck_ = createControl(L"BUTTON", L"允许全局触发", BS_AUTOCHECKBOX, 32, 34, 200, 24,
+    createControl(L"BUTTON", L"连点", BS_GROUPBOX, 12, 10, 530, 232);
+    globalEnabledCheck_ = createControl(L"BUTTON", L"允许全局触发", BS_AUTOCHECKBOX, 32, 34, 220, 24,
                                         IdGlobalEnabled);
-    createControl(L"STATIC", L"全局开关键", 0, 32, 68, 130, 22);
-    globalToggleButton_ = createControl(L"BUTTON", L"", BS_PUSHBUTTON, 170, 64, 140, 26, IdGlobalToggleKey);
-    createControl(L"STATIC", L"连点键", 0, 32, 100, 130, 22);
-    clickKeyButton_ = createControl(L"BUTTON", L"", BS_PUSHBUTTON, 170, 96, 140, 26, IdClickKey);
-    createControl(L"STATIC", L"触发键", 0, 32, 132, 130, 22);
-    triggerKeyButton_ = createControl(L"BUTTON", L"", BS_PUSHBUTTON, 170, 128, 140, 26, IdTriggerKey);
-    createControl(L"STATIC", L"触发模式", 0, 32, 164, 130, 22);
-    modeCombo_ = createControl(L"COMBOBOX", L"", CBS_DROPDOWNLIST | WS_VSCROLL, 170, 160, 160, 120, IdMode);
+    createControl(L"STATIC", L"全局开关键", 0, 32, 70, 130, 22);
+    globalToggleButton_ = createControl(L"BUTTON", L"", BS_PUSHBUTTON, 170, 66, 140, 26, IdGlobalToggleKey);
+    createControl(L"STATIC", L"连点键", 0, 32, 104, 130, 22);
+    clickKeyButton_ = createControl(L"BUTTON", L"", BS_PUSHBUTTON, 170, 100, 140, 26, IdClickKey);
+    createControl(L"STATIC", L"触发键", 0, 32, 138, 130, 22);
+    triggerKeyButton_ = createControl(L"BUTTON", L"", BS_PUSHBUTTON, 170, 134, 140, 26, IdTriggerKey);
+    createControl(L"STATIC", L"触发模式", 0, 32, 172, 130, 22);
+    modeCombo_ = createControl(L"COMBOBOX", L"", CBS_DROPDOWNLIST | WS_VSCROLL, 170, 168, 170, 120, IdMode);
     SendMessageW(modeCombo_, CB_ADDSTRING, 0, reinterpret_cast<LPARAM>(L"点击触发"));
     SendMessageW(modeCombo_, CB_ADDSTRING, 0, reinterpret_cast<LPARAM>(L"按住触发"));
-    createControl(L"STATIC", L"CPS", 0, 32, 196, 130, 22);
-    cpsEdit_ = createControl(L"EDIT", L"", ES_AUTOHSCROLL, 170, 192, 80, 24, IdCps, WS_EX_CLIENTEDGE);
+    createControl(L"STATIC", L"CPS", 0, 32, 206, 130, 22);
+    cpsEdit_ = createControl(L"EDIT", L"", ES_AUTOHSCROLL, 170, 202, 80, 24, IdCps, WS_EX_CLIENTEDGE);
+    createControl(L"STATIC", L"提示: 点击任意按键按钮后，按键盘完成绑定", 0, 270, 204, 250, 22);
+    createControl(L"STATIC", L"建议 CPS 范围: 5.0 - 20.0", 0, 270, 226, 200, 22);
 
-    createControl(L"BUTTON", L"录制与回放", BS_GROUPBOX, 12, 230, 480, 104);
-    createControl(L"STATIC", L"录制键", 0, 32, 264, 130, 22);
-    recordKeyButton_ = createControl(L"BUTTON", L"", BS_PUSHBUTTON, 170, 260, 140, 26, IdRecordKey);
-    createControl(L"STATIC", L"回放键", 0, 32, 296, 130, 22);
-    playbackKeyButton_ = createControl(L"BUTTON", L"", BS_PUSHBUTTON, 170, 292, 140, 26, IdPlaybackKey);
-    recordingStatusLabel_ = createControl(L"STATIC", L"", 0, 324, 264, 150, 44);
+    createControl(L"BUTTON", L"录制与回放", BS_GROUPBOX, 12, 252, 530, 110);
+    createControl(L"STATIC", L"录制键", 0, 32, 290, 130, 22);
+    recordKeyButton_ = createControl(L"BUTTON", L"", BS_PUSHBUTTON, 170, 286, 140, 26, IdRecordKey);
+    createControl(L"STATIC", L"回放键", 0, 32, 324, 130, 22);
+    playbackKeyButton_ = createControl(L"BUTTON", L"", BS_PUSHBUTTON, 170, 320, 140, 26, IdPlaybackKey);
+    recordingStatusLabel_ = createControl(L"STATIC", L"", 0, 340, 288, 180, 44);
 
-    createControl(L"BUTTON", L"状态", BS_GROUPBOX, 12, 342, 480, 74);
-    hookStatusLabel_ = createControl(L"STATIC", L"", 0, 32, 370, 170, 20);
-    runStatusLabel_ = createControl(L"STATIC", L"", 0, 210, 370, 260, 20);
-    configPathLabel_ = createControl(L"STATIC", L"", SS_PATHELLIPSIS, 32, 394, 438, 18);
+    createControl(L"BUTTON", L"状态", BS_GROUPBOX, 12, 370, 530, 90);
+    hookStatusLabel_ = createControl(L"STATIC", L"", 0, 32, 398, 170, 20);
+    runStatusLabel_ = createControl(L"STATIC", L"", 0, 210, 398, 300, 20);
+    configPathLabel_ = createControl(L"STATIC", L"", SS_PATHELLIPSIS, 32, 426, 498, 18);
 }
 
 void MainWindow::startInputHook() {
